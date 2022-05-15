@@ -1,35 +1,24 @@
 package com.example.FirstSrpingProject.Controllers;
 
-import com.example.FirstSrpingProject.AllUsersDTO;
 import com.example.FirstSrpingProject.Entities.UserEntity;
 import com.example.FirstSrpingProject.Services.UsersServices;
 import com.example.FirstSrpingProject.StatusResult;
 import com.example.FirstSrpingProject.UserDTO;
-import com.example.FirstSrpingProject.UserPage;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.ws.rs.QueryParam;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @RestController
 public class UsersController {
 
     @Autowired
     private UsersServices usersServices;
-
-
-
 
     @GetMapping("/users")
     @ResponseBody
@@ -44,10 +33,6 @@ public class UsersController {
        if (!usersServices.validatePaginationParams(pageSize,pageNumber)){
            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Bad Params");
        }
-
-       AllUsersDTO allUsersDTO = new AllUsersDTO();
-
-       //List<UserEntity>
 
        return ResponseEntity
                .ok()
